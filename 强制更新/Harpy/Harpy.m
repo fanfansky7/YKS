@@ -8,7 +8,7 @@
 
 #import "Harpy.h"
 #import "HarpyConstants.h"
-//dfgfsfdhgh
+
 #define kHarpyCurrentVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey]
 
 @interface Harpy ()
