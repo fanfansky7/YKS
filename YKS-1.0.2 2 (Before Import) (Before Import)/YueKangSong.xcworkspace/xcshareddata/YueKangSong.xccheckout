@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>63BFAFAB-902C-4A24-BD6D-6B938C3BB1D9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>YueKangSong</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1b2d42e2-25e4-6147-820a-5d25d09fbb01++9679</key>
+		<string>https://123.57.23.158:8443/svn/yks2/code/trunk/iso/YKS-1.0.2%2525202</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>YueKangSong.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1b2d42e2-25e4-6147-820a-5d25d09fbb01++9679</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>1b2d42e2-25e4-6147-820a-5d25d09fbb01++9679</key>
+		<string>https://123.57.23.158:8443/svn/yks2</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://123.57.23.158:8443/svn/yks2/code/trunk/iso/YKS-1.0.2%2525202/YueKangSong.xcworkspace</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1b2d42e2-25e4-6147-820a-5d25d09fbb01++9679</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1b2d42e2-25e4-6147-820a-5d25d09fbb01++9679</string>
+			<key>IDESourceControlWCCName</key>
+			<string>YKS-1.0.2%202</string>
+		</dict>
+	</array>
+</dict>
+</plist>
