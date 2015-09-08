@@ -202,6 +202,14 @@
     [alertView callBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             [self showProgress];
+            
+          NSDictionary *addressDic = [UIViewController selectedAddressUnArchiver];
+            if ([addressDic[@"id"] isEqualToString:_addressInfo[@"id"]]) {
+                [UIViewController deleteFile];
+            }
+            
+            
+            
             [GZBaseRequest deleteAddressById:_addressInfo[@"id"]
                                     callback:^(id responseObject, NSError *error) {
                                         [self hideProgress];
