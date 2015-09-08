@@ -493,7 +493,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="dpH-4I-T5o" customClass="YKSBottomLineView">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ek4-9S-GW1">
@@ -510,10 +510,6 @@
                                                 <action selector="confirmAction:" destination="rn6-9T-o3M" eventType="touchUpInside" id="t6N-dJ-3Zo"/>
                                             </connections>
                                         </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlL-Ac-lJZ" userLabel="segment" customClass="DZNSegmentedControl">
-                                            <rect key="frame" x="0.0" y="50" width="375" height="40"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </view>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入兑换码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rLg-vx-ZuY">
                                             <rect key="frame" x="13" y="15" width="211" height="30"/>
                                             <constraints>
@@ -523,6 +519,10 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         </textField>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qlL-Ac-lJZ" userLabel="segment">
+                                            <rect key="frame" x="0.0" y="49" width="375" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -531,7 +531,7 @@
                                         <constraint firstItem="qlL-Ac-lJZ" firstAttribute="leading" secondItem="dpH-4I-T5o" secondAttribute="leading" id="C8v-sr-evx"/>
                                         <constraint firstItem="rLg-vx-ZuY" firstAttribute="centerY" secondItem="Ek4-9S-GW1" secondAttribute="centerY" id="Lmx-ak-Cmq"/>
                                         <constraint firstAttribute="trailing" secondItem="qlL-Ac-lJZ" secondAttribute="trailing" id="TQg-fG-O7q"/>
-                                        <constraint firstAttribute="bottom" secondItem="qlL-Ac-lJZ" secondAttribute="bottom" constant="12" id="XWe-tz-fBn"/>
+                                        <constraint firstAttribute="bottom" secondItem="qlL-Ac-lJZ" secondAttribute="bottom" id="XWe-tz-fBn"/>
                                         <constraint firstItem="Ek4-9S-GW1" firstAttribute="leading" secondItem="rLg-vx-ZuY" secondAttribute="trailing" constant="8" id="lkH-4G-4Y5"/>
                                         <constraint firstItem="qlL-Ac-lJZ" firstAttribute="top" secondItem="rLg-vx-ZuY" secondAttribute="bottom" constant="5" id="ohk-6F-Zw1"/>
                                     </constraints>
@@ -599,8 +599,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="bottom" destination="dpH-4I-T5o" id="HKt-7U-yRr"/>
                         <outlet property="confirmButton" destination="Ek4-9S-GW1" id="ZLg-Me-GFz"/>
-                        <outlet property="segmentControl" destination="qlL-Ac-lJZ" id="ZNy-Qg-UG0"/>
+                        <outlet property="segcontainView" destination="qlL-Ac-lJZ" id="29P-oG-jgh"/>
                         <outlet property="tableView" destination="8tQ-NA-awR" id="Eh6-zH-084"/>
                         <outlet property="textField" destination="rLg-vx-ZuY" id="SHY-f6-yhQ"/>
                     </connections>

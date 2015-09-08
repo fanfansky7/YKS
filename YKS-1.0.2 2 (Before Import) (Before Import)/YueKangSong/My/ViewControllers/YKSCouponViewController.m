@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 YKS. All rights reserved.
 //
 
-//#import "YKSBottomLineView"
+#import "YKSLineView.h"
 #import "YKSCouponViewController.h"
 #import "GZBaseRequest.h"
 #import "YKSCouponListCell.h"
@@ -18,6 +18,7 @@
 
 @interface YKSCouponViewController () <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UIView *bottom;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) NSArray *datas;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -50,10 +51,13 @@
 
 
 -(UIView *)headersegment{
-    _segmentControl = [[DZNSegmentedControl alloc]initWithItems:@[@"未使用",@"已使用",@"已过期"]];
+    DZNSegmentedControl *d = [[DZNSegmentedControl alloc]initWithItems:@[@"未使用",@"已使用",@"已过期"]];
+    self.segmentControl = d;
+//    [self.segcontainView addSubview:d];
+    
 //    _segmentControl.backgroundColor = [UIColor greenColor];
     
-//    [_control setTintColor:[UIColor yellowColor]];
+//    [_segmentControl setTintColor:[UIColor yellowColor]];
     [[DZNSegmentedControl appearance] setTintColor:kNavigationBar_back_color];
     [_segmentControl setHairlineColor:[UIColor lightGrayColor]];
     _segmentControl.selectedSegmentIndex = _status;
@@ -115,7 +119,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     [self headersegment];
 //    _segcontainView.frame = CGRectMake(0, 55, self.view.bounds.size.width, 45);
     //    _segcontainView.backgroundColor = [UIColor redColor];
     
@@ -128,7 +132,7 @@
     [_segmentControl setHairlineColor:[UIColor lightGrayColor]];
     _segmentControl.selectedSegmentIndex = _status;
     _segmentControl.showsCount = NO;
-    _segmentControl.height = 40.0f;
+    _segmentControl.height = 45.0f;
     _segmentControl.autoAdjustSelectionIndicatorWidth = NO;
     [_segmentControl addTarget:self
                         action:@selector(switchCoupon:)
@@ -156,10 +160,10 @@
     _confirmButton.backgroundColor = [UIColor lightGrayColor];
     
     [self requestDataByPage:1];
-    __weak YKSCouponViewController *bself = self;
-    [self.tableView addLegendHeaderWithRefreshingBlock:^{
-        [bself requestDataByPage:1];
-    }];
+//    __weak YKSCouponViewController *bself = self;
+//    [self.tableView addLegendHeaderWithRefreshingBlock:^{
+//        [bself requestDataByPage:1];
+//    }];
     // Do any additional setup after loading the view.
 }
 
