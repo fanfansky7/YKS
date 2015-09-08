@@ -225,7 +225,6 @@
                                                                                  }
                                                                              }
                                                                          }
-                                                                         NSLog(@"responseObject %@", responseObject);
                                                                      }
                                                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
                                                                          NSLog(@"error = %@", error);

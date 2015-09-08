@@ -171,7 +171,17 @@
 - (void)requestDataByPage:(NSInteger)page {
     [GZBaseRequest couponList:page
                      callback:^(id responseObject, NSError *error) {
-                         NSLog(@"%@",responseObject);
+                         
+                         NSMutableArray *a = [responseObject[@"data"][@"couponlist"] mutableCopy];
+                         [a enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                            NSString *s = [YKSTools formatterDateStamp:[obj[@"etime"] integerValue]]  ;
+//                             NSDictionary *d = obj;
+//                             [d setValue:s forKey:@"end"];
+                             
+//                             d[@"etime"]=s;
+                         }];
+                         
+                         NSLog(@"%@======%@",responseObject,a);
                          if (page == 1) {
                              if (self.tableView.header.isRefreshing) {
                                  [self.tableView.header endRefreshing];
