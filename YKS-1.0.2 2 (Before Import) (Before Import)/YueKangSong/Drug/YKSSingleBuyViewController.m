@@ -16,7 +16,7 @@
 #import "YKSCloseButton.h"
 #import "YKSCouponViewController.h"
 #import "YKSUserModel.h"
-
+#import "UIAlertView+Block.h"
 @interface YKSSingleBuyViewController () <
 UITableViewDataSource,
 UITableViewDelegate,
@@ -110,45 +110,55 @@ UIActionSheetDelegate>
         [self showToastMessage:@"处方药请上传医嘱说明"];
         return;
     }
-  
-    [self showProgress];
-    //请求网络获取药品处方药非处方药详情
-    [GZBaseRequest submitOrderContrast:@[@{@"gid": _drugInfo[@"gid"],
-                                           @"gcount": @(_buyCount),
-                                           @"gtag": _drugInfo[@"gtag"]}]
-                              couponid:_couponInfo ? _couponInfo[@"id"] : nil
-                             addressId:_addressInfos[@"id"]
-                                images:_uploadImages
-                              callback:^(id responseObject, NSError *error) {
-                                  [self hideProgress];
-                                  if (error) {
-                                      [self showToastMessage:@"网络加载失败"];
-                                      return ;
-                                  }
-                                  
-                                  //这里都提交订单了,里面应该有价格提交吧
-                                  if (ServerSuccess(responseObject)) {
-                                      NSLog(@"订单处理中 %@", responseObject);
-                                      [YKSOrderConfirmView showOrderToView:self.view.window orderId:responseObject[@"data"][@"orderid"] callback:^{
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"根据新版GSP（卫生部第90号令）第一百七十七条规定，药品除质量原因外，一经售出，不得退换。悦康送所售药品及保健品除质量问题外不支持退货。是否确认下单？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+    [alertView callBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex==1) {
+            [self showProgress];
+            //请求网络获取药品处方药非处方药详情
+            [GZBaseRequest submitOrderContrast:@[@{@"gid": _drugInfo[@"gid"],
+                                                   @"gcount": @(_buyCount),
+                                                   @"gtag": _drugInfo[@"gtag"]}]
+                                      couponid:_couponInfo ? _couponInfo[@"id"] : nil
+                                     addressId:_addressInfos[@"id"]
+                                        images:_uploadImages
+                                      callback:^(id responseObject, NSError *error) {
+                                          [self hideProgress];
+                                          if (error) {
+                                              [self showToastMessage:@"网络加载失败"];
+                                              return ;
+                                          }
                                           
-                                          [self dismissViewControllerAnimated:NO completion:nil];
-                                          if (self.navigationController.presentingViewController) {
-                                              if ([self.navigationController.presentingViewController isKindOfClass:[UITabBarController class]]) {
-                                                  [(UITabBarController *)self.navigationController.presentingViewController setSelectedIndex:0];
-                                              }
-                                              [self.navigationController dismissViewControllerAnimated:NO completion:^{                                                  
+                                          //这里都提交订单了,里面应该有价格提交吧
+                                          if (ServerSuccess(responseObject)) {
+                                              NSLog(@"订单处理中 %@", responseObject);
+                                              [YKSOrderConfirmView showOrderToView:self.view.window orderId:responseObject[@"data"][@"orderid"] callback:^{
+                                                  
+                                                  [self dismissViewControllerAnimated:NO completion:nil];
+                                                  if (self.navigationController.presentingViewController) {
+                                                      if ([self.navigationController.presentingViewController isKindOfClass:[UITabBarController class]]) {
+                                                          [(UITabBarController *)self.navigationController.presentingViewController setSelectedIndex:0];
+                                                      }
+                                                      [self.navigationController dismissViewControllerAnimated:NO completion:^{
+                                                      }];
+                                                  } else {
+                                                      self.tabBarController.selectedIndex = 0;
+                                                      [self.navigationController popToRootViewControllerAnimated:NO];
+                                                  }
                                               }];
                                           } else {
-                                              self.tabBarController.selectedIndex = 0;
-                                              [self.navigationController popToRootViewControllerAnimated:NO];
+                                              [self showToastMessage:responseObject[@"msg"]];
                                           }
+                                          
                                       }];
-                                  } else {
-                                      [self showToastMessage:responseObject[@"msg"]];
-                                  }
-        
-                              }];
-}
+
+        }
+    }];
+    
+    
+    
+  
+    }
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -199,7 +209,7 @@ UIActionSheetDelegate>
                 return ;
             }
         }
-        //[self performSegueWithIdentifier:@"gotoYKSAddressListViewController" sender:nil];
+        [self performSegueWithIdentifier:@"gotoYKSAddressListViewController" sender:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -347,13 +357,13 @@ UIActionSheetDelegate>
         _buyCount = 1;
     }
     _originTotalPrice = [_drugInfo[@"gprice"] floatValue] *_buyCount;
-    if (_originTotalPrice<[self.couponInfo[@"faceprice"] floatValue]) {
-        self.couponInfo = nil;
+//    if (_originTotalPrice<[self.couponInfo[@"faceprice"] floatValue]) {
+//        self.couponInfo = nil;
 #pragma kkkk
 //        YKSBuyCouponCell *couponCell = [self.tableView dequeueReusableCellWithIdentifier:@"BuyCouponCell" forIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
 //        couponCell.detailTextLabel.text = @"";
-        [self.tableView reloadData];
-    }
+//        [self.tableView reloadData];
+//    }
 
     
     [self showPirce:drugCell];
@@ -402,6 +412,7 @@ UIActionSheetDelegate>
                 [YKSTools showFreightPriceTextByTotalPrice:_originTotalPrice callback:^(NSAttributedString *totalPriceString, NSString *freightPriceString) {
                     CGFloat freightPrice = [totalPriceString.string substringFromIndex:1].floatValue;
                     CGFloat price = freightPrice - [self.couponInfo[@"faceprice"] floatValue];
+                    price = price<0?0:price;
                     _totalPriceLabel.attributedText = [YKSTools priceString:price];
                     _freightLabel.text = freightPriceString;
                 }];

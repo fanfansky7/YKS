@@ -439,8 +439,8 @@
         if ([obj[@"needBuyCount"] integerValue] >= [obj[@"repertory"] integerValue]) {
             [obj setValue:obj[@"repertory"] forKey:@"needBuyCount"];
         }
-        if (obj[@"needBuyCount"]<0) {
-            [obj setValue:@"0" forKey:@"needBuyCount"];
+        if (obj[@"needBuyCount"]<=0) {
+            [obj setValue:@"1" forKey:@"needBuyCount"];
         }
         
         
