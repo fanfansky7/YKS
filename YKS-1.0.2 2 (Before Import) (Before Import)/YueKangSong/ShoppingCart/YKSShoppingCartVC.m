@@ -94,7 +94,6 @@
     }
 }
 
-
 - (void)requestData {
     [GZBaseRequest shoppingcartListCallback:^(id responseObject, NSError *error) {
         if (error) {
@@ -190,7 +189,7 @@
         if (_allSelectedButton.selected) {
             obj[@"isBuy"] = @YES;
         }
-        if ([obj[@"isBuy"] boolValue] &&[obj[@"gcount"] integerValue]>0) {
+        if ([obj[@"isBuy"] boolValue]) {
             [selectDatas addObject:obj];
             [gids addObject:obj[@"gid"]];
         }
@@ -440,8 +439,8 @@
         if ([obj[@"needBuyCount"] integerValue] >= [obj[@"repertory"] integerValue]) {
             [obj setValue:obj[@"repertory"] forKey:@"needBuyCount"];
         }
-        if (obj[@"needBuyCount"]<=0) {
-            [obj setValue:@"1" forKey:@"needBuyCount"];
+        if (obj[@"needBuyCount"]<0) {
+            [obj setValue:@"0" forKey:@"needBuyCount"];
         }
         
         

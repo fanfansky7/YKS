@@ -53,6 +53,7 @@
         [self performSegueWithIdentifier:@"gotoLogin" sender:nil];
         return ;
     }
+    
     [self performSegueWithIdentifier:@"gotoYKSMsgTableViewController" sender:nil];
 }
 
@@ -107,13 +108,13 @@
             default:
                 break;
         }
-    }else if (indexPath.section == 4){
-        if ([YKSUserModel isLogin]) {
-            [YKSUserModel logout];
-            YKSHomeTableViewController *homevc = [self.storyboard instantiateViewControllerWithIdentifier:@"YKSHomeTableViewController" ];
-            [homevc.addressButton setTitle:@"我的位置" forState:UIControlStateNormal];
-            [self viewDidAppear:YES];
-        }
+//    }else if (indexPath.section == 4){
+//        if ([YKSUserModel isLogin]) {
+//            [YKSUserModel logout];
+//            YKSHomeTableViewController *homevc = [self.storyboard instantiateViewControllerWithIdentifier:@"YKSHomeTableViewController" ];
+//            [homevc.addressButton setTitle:@"我的位置" forState:UIControlStateNormal];
+//            [self viewDidAppear:YES];
+//        }
 
     }
 }

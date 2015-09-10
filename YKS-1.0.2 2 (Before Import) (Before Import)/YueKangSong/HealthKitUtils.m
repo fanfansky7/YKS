@@ -737,7 +737,7 @@
         [self.healthStore executeQuery:query2];
     });
 }
-
+// 血压
 - (void)getBloodPressureDiastolic:(void(^)(NSDate *lastDate, NSNumber *lastStep, NSNumber *minStep, NSNumber *maxStep))callback {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -781,6 +781,7 @@
                                                                            ofDate:[NSDate date]
                                                                           options:0];
                 NSDate *beginDate = startDate;
+                
                 [results enumerateStatisticsFromDate:beginDate
                                               toDate:endDate
                                            withBlock:^(HKStatistics *result, BOOL * __unused stop) {

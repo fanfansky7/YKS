@@ -189,17 +189,10 @@ NSString * const kUserInfo = @"userInfo";
 }
 
 - (NSDictionary *)currentSelectAddress {
-//    if (!_currentSelectAddress) {
-//        _currentSelectAddress = [[NSUserDefaults standardUserDefaults]
-//                                 objectForKey:@"kCurrentSelectAddress"];
-        
-        _currentSelectAddress = [UIViewController selectedAddressUnArchiver];
-
-//    }
-    
-    
-    
-    
+    if (!_currentSelectAddress) {
+        _currentSelectAddress = [[NSUserDefaults standardUserDefaults]
+                                 objectForKey:@"kCurrentSelectAddress"];
+    }
     return _currentSelectAddress;
 }
 

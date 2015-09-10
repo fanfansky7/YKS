@@ -11,6 +11,7 @@
 #import "YKSUserModel.h"
 #import "YKSMyHealthViewController.h"
 #import "HealthKitUtils.h"
+#import "YKSHomeTableViewController.h"
 
 @interface YKSMyInfoDetailVC () <UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *phoneField;
@@ -144,9 +145,20 @@
         
         [self performSegueWithIdentifier:@"gotoYKSMyHealthViewController" sender:@(healthType)];
     }
-}
+    if (indexPath.section == 4)
+    {
+        if ([YKSUserModel isLogin]) {
+            [YKSUserModel logout];
+            YKSHomeTableViewController *homevc = [self.storyboard instantiateViewControllerWithIdentifier:@"YKSHomeTableViewController" ];
+            [homevc.addressButton setTitle:@"我的位置" forState:UIControlStateNormal];
+//            [self viewDidAppear:YES];
+//            [self.navigationController popoverPresentationController];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
 
-#pragma mark - UIPickerViewDataSource
+    }
+}
+//#pragma mark - UIPickerViewDataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
