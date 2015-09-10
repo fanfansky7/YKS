@@ -30,8 +30,8 @@
 @property (strong,nonatomic) NSMutableArray *neverDatas; // 未使用的数据
 @property(strong,nonatomic)  NSMutableArray *didDatas;   // 已使用的数据
 @property(strong,nonatomic)  NSMutableArray *pastDatas;  // 已过期的数据
-@property (strong, nonatomic) NSMutableArray *appearDatas; // 过渡数据
-@property (weak, nonatomic) IBOutlet UIView *segcontainView; // 分段控制器
+@property (strong, nonatomic) NSMutableArray *appearDatas;
+@property (weak, nonatomic) IBOutlet UIView *segcontainView;
 
 @end
 
@@ -171,7 +171,17 @@
 - (void)requestDataByPage:(NSInteger)page {
     [GZBaseRequest couponList:page
                      callback:^(id responseObject, NSError *error) {
-                         NSLog(@"%@",responseObject);
+                         
+                         NSMutableArray *a = [responseObject[@"data"][@"couponlist"] mutableCopy];
+                         [a enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                            NSString *s = [YKSTools formatterDateStamp:[obj[@"etime"] integerValue]]  ;
+//                             NSDictionary *d = obj;
+//                             [d setValue:s forKey:@"end"];
+                             
+//                             d[@"etime"]=s;
+                         }];
+                         
+                         NSLog(@"%@======%@",responseObject,a);
                          if (page == 1) {
                              if (self.tableView.header.isRefreshing) {
                                  [self.tableView.header endRefreshing];

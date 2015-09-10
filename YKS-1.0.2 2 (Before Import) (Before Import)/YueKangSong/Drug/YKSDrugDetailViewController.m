@@ -17,7 +17,6 @@
 #import "YKSSingleBuyViewController.h"
 #import "YKSAddAddressVC.h"
 #import "YKSAddressListViewController.h"
-#import "YKSDrugShuoMingViewController.h" // 药品说明
 
 @interface YKSDrugDetailViewController () <UITableViewDelegate, ImagePlayerViewDelegate,UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -233,7 +232,7 @@
     [self performSegueWithIdentifier:@"gotoYKSSingleBuyViewController" sender:_drugInfo];
      */
     [self jumpSeque];
-  }
+}
 
 - (void)jumpSeque
 {
@@ -376,7 +375,7 @@
         }];
     } else if (indexPath.row == 2) {
         return [tableView fd_heightForCellWithIdentifier:@"drugDescribeCell" configuration:^(YKSDrugDescribeCell *describeCell) {
-            describeCell.directionLabel.text = @"124567887UYWTDWJDNVGUFBG";//DefuseNUllString(_drugInfo[@"gmanual"]);
+            describeCell.directionLabel.text = DefuseNUllString(_drugInfo[@"gmanual"]);
         }];
     }
     return 40.0f;
@@ -429,12 +428,11 @@
     } else if (indexPath.row  == 2) {
         YKSDrugDescribeCell *describeCell = [tableView dequeueReusableCellWithIdentifier:@"drugDescribeCell" forIndexPath:indexPath];
         describeCell.factoryLabel.text = DefuseNUllString(_drugInfo[@"vendor"]);
-        describeCell.directionLabel.text = @"124567887UYWTDWJDNVGUFBG"; //DefuseNUllString(_drugInfo[@"gmanual"]);
+        describeCell.directionLabel.text = DefuseNUllString(_drugInfo[@"gmanual"]);
         cell = describeCell;
     }
     return cell;
 }
-
 
 
  #pragma mark - Navigation
@@ -444,13 +442,6 @@
     if ([segue.identifier isEqualToString:@"gotoYKSSingleBuyViewController"]) {
         YKSSingleBuyViewController *singleVC = segue.destinationViewController;
         singleVC.drugInfo = _drugInfo;
-        
-    }
-    else if ([segue.identifier isEqualToString:@"YKSDrugShuoMingViewController"])
-    {
-        YKSDrugShuoMingViewController *DrugVC = segue.destinationViewController;
-       DrugVC.shuoMingDic = _drugInfo;
-        
     }
 }
 

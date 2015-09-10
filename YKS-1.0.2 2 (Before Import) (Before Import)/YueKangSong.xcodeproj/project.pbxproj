@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1ED2C060D59F1070CB6AEE4D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D69E6ED74E7E95007A91D6BA /* libPods.a */; };
-		31659EB51BA021FB00F65F3A /* YKSDrugShuoMingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31659EB41BA021FB00F65F3A /* YKSDrugShuoMingViewController.m */; };
 		3E18E9E31B5F51E6008ACC2D /* YKSSearchStreetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E18E9E21B5F51E6008ACC2D /* YKSSearchStreetVC.m */; };
 		3E2705A31B02272B00FC6010 /* YKSTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2705A21B02272B00FC6010 /* YKSTabBarViewController.m */; };
 		3E2705AC1B022AC000FC6010 /* qr_scan_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2705A71B022AC000FC6010 /* qr_scan_line@2x.png */; };
@@ -153,8 +152,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		31659EB31BA021FB00F65F3A /* YKSDrugShuoMingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKSDrugShuoMingViewController.h; sourceTree = "<group>"; };
-		31659EB41BA021FB00F65F3A /* YKSDrugShuoMingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKSDrugShuoMingViewController.m; sourceTree = "<group>"; };
 		3E18E9E11B5F51E6008ACC2D /* YKSSearchStreetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKSSearchStreetVC.h; sourceTree = "<group>"; };
 		3E18E9E21B5F51E6008ACC2D /* YKSSearchStreetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YKSSearchStreetVC.m; sourceTree = "<group>"; };
 		3E2705A11B02272B00FC6010 /* YKSTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YKSTabBarViewController.h; sourceTree = "<group>"; };
@@ -721,8 +718,6 @@
 				3EFFB7411B2860EF00692CAA /* YKSMyHealthViewController.m */,
 				F310019F1B94369A00E1C822 /* YKSYQMTableViewController.h */,
 				F31001A01B94369A00E1C822 /* YKSYQMTableViewController.m */,
-				31659EB31BA021FB00F65F3A /* YKSDrugShuoMingViewController.h */,
-				31659EB41BA021FB00F65F3A /* YKSDrugShuoMingViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1070,7 +1065,6 @@
 				3EA119D91B0B33170073949F /* YKSAreaManager.m in Sources */,
 				3E9C46621B08399D009CAC1D /* YKSOrderViewController.m in Sources */,
 				3E9C46101B058B84009CAC1D /* UIViewController+Common.m in Sources */,
-				31659EB51BA021FB00F65F3A /* YKSDrugShuoMingViewController.m in Sources */,
 				3E9C46261B0618C9009CAC1D /* YKSHomeTableViewController.m in Sources */,
 				3EF6393E1B15CF0300858F3E /* YKSCouponListCell.m in Sources */,
 				3EFB3CA61B158B3F00107809 /* YKSCloseButton.m in Sources */,

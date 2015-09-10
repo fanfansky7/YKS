@@ -22,7 +22,6 @@
 
 //.新增用户推广信息
 +(void)getYQMPromotephone:(NSString *)phone andcode:(NSString *)code AndcallBack:(void (^)(id responseObject, NSError *error ))callback;
-
 //.获取徽章信息
 +(void)getYQMhuizhangphone:(NSString *)phone AndcallBack:(void (^)(id responseObject, NSError *error ))callback;
 

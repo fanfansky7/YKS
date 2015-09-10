@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+//    _streetDic = addressInfo
     _streetField.placeholder = @"请输入小区、楼宇等地址关键字";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                           action:@selector(gotoSearchAddress)];
@@ -137,12 +137,19 @@
     }
     
     NSString *areaCode = [NSString stringWithFormat:@"%@,%@,%@", _areaInfo[@"province"][@"code"], [_areaInfo[@"city"] firstObject][@"code"], @"110105"];
-    NSString *latLng = [NSString stringWithFormat:@"%@,%@", _streetDic[@"location"][@"lat"], _streetDic[@"location"][@"lng"]];
+    NSString *latLng;
+    if (_streetDic) {
+        latLng = [NSString stringWithFormat:@"%@,%@", _addressInfo[@"location"][@"lat"], _streetDic[@"location"][@"lng"]];
+    }else{
+        latLng = _addressInfo[@"community_lat_lng"];
+    }
+    
+    
     NSString *detailAddress = [NSString stringWithFormat:@"%@",  _detailAddressField.text];//_streetDic[@"address"], _streetDic[@"name"],
     NSLog(@"%@aaaa%@",_streetDic,_detailAddressField.text);
     
     
-    if (!_addressInfo || _isCurrentLocation) {
+    if (!_addressInfo || _isCurrentLocation) {//add
         [GZBaseRequest addAddressExpressArea:areaCode
                                    community:_streetField.text
                              communityLatLng:latLng
@@ -163,11 +170,15 @@
                                             }
                                             [self.navigationController popViewControllerAnimated:YES];
                                             NSLog(@"添加成功收货地址 = %@", responseObject);
+                                            [UIViewController deleteFile];
+                                            [UIViewController selectedAddressArchiver:_addressInfo];
+                                            [GZBaseRequest restartShoppingCartBygids:nil callback:^(id responseObject, NSError *error) {
+                                            }];
                                         } else {
                                             [self showToastMessage:responseObject[@"msg"]];
                                         }
                                     }];
-    } else {
+    } else {//修改
         [GZBaseRequest editAddressById:_addressInfo[@"id"]
                            expressArea:areaCode
                              community:_streetField.text
@@ -185,9 +196,17 @@
                                       [self.navigationController showToastMessage:@"更新成功"];
                                       [self.navigationController popViewControllerAnimated:YES];
                                       NSLog(@"更改收货地址成功 = %@", responseObject);
+                                      //这里就是了,拿到地址,先删除旧地址
+                                      [UIViewController deleteFile];
+                                      [UIViewController selectedAddressArchiver:_addressInfo];
+                                      [GZBaseRequest restartShoppingCartBygids:nil callback:^(id responseObject, NSError *error) {
+                                      }];
+
+
                                   } else {
                                       [self showToastMessage:responseObject[@"msg"]];
                                   }
+
                               }];
     }
 }
@@ -202,6 +221,17 @@
     [alertView callBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             [self showProgress];
+            
+          NSDictionary *addressDic = [UIViewController selectedAddressUnArchiver];
+            if ([addressDic[@"id"] isEqualToString:_addressInfo[@"id"]]) {
+                [UIViewController deleteFile];
+                [GZBaseRequest restartShoppingCartBygids:nil callback:^(id responseObject, NSError *error) {
+                    
+                }];
+            }
+            
+            
+            
             [GZBaseRequest deleteAddressById:_addressInfo[@"id"]
                                     callback:^(id responseObject, NSError *error) {
                                         [self hideProgress];
@@ -229,7 +259,7 @@
     [self.view endEditing:YES];
 }
 
-- (void)textFieldDidChange:(UITextField *)textField {
+- (void)DidChange:(UITextField *)textField {
     NSString *street = textField.text;
     if (![_lastSearchKey isEqualToString:textField.text]) {
         NSLog(@"text = %@", textField.text);

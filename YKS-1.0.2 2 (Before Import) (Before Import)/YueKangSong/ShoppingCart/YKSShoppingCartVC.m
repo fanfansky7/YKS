@@ -189,7 +189,7 @@
         if (_allSelectedButton.selected) {
             obj[@"isBuy"] = @YES;
         }
-        if ([obj[@"isBuy"] boolValue]) {
+        if ([obj[@"isBuy"] boolValue] &&[obj[@"gcount"] integerValue]>0) {
             [selectDatas addObject:obj];
             [gids addObject:obj[@"gid"]];
         }
