@@ -41,27 +41,27 @@
     return _baseInfo;
 }
 
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    if (self.isforceupdate) {
-//        
-//        //tiaoitms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=
-//        
-//        NSString *url = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1018635146";
-//        
-//        
-//        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:url]];
-//        
-//    }else{
-//        if (buttonIndex==0) {
-//            //quxiao1018635146
-//        }else{//跳转软件首页
-//            NSString *URL = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1018635146";
-//            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:URL]];
-//
-//        }
-//        
-//    }
-//}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (self.isforceupdate) {
+        
+        //tiaoitms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=
+        
+        NSString *url = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1018635146";
+        
+        
+        [[UIApplication sharedApplication]openURL:[NSURL URLWithString:url]];
+        
+    }else{
+        if (buttonIndex==0) {
+            //quxiao1018635146
+        }else{//跳转软件首页
+            NSString *URL = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1018635146";
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:URL]];
+
+        }
+        
+    }
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    NSString *URL = @"http://itunes.apple.com/app/id1018635146?mt=8";

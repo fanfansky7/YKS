@@ -81,6 +81,9 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    //这里就是了,拿到地址,先删除旧地址
+    [UIViewController deleteFile];
+    [UIViewController selectedAddressArchiver:_datas[indexPath.row]];
     
     if (_callback) {
         _callback(_datas[indexPath.row]);

@@ -41,8 +41,8 @@ int i = 0;
 - (IBAction)minusAction:(UIButton *)sender {
     NSInteger bugCount = [self.centerCountLabel.text integerValue];
     bugCount --;
-    if (bugCount <= 0) {
-        bugCount = 1;
+    if (bugCount < 0) {
+        bugCount = 0;
     }
 //    [self bringSubviewToFront:self.countLabel];
 //    self.countLabel.hidden = NO;

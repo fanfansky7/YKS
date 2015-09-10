@@ -165,6 +165,9 @@
     
     _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
     _pageControl.pageIndicatorTintColor = [UIColor colorWithRed:50.0/255 green:143.0/255 blue:250.0/255 alpha:1];
+
+    
+//    _pageControl.center = CGPointMake(SCREEN_WIDTH/2, _scrollView.bounds.size.height-50);
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.delegate = self;
     _scrollView.bounces = NO;
@@ -222,6 +225,7 @@
                                                                                  }
                                                                              }
                                                                          }
+                                                                         NSLog(@"responseObject %@", responseObject);
                                                                      }
                                                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
                                                                          NSLog(@"error = %@", error);
